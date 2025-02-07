@@ -132,6 +132,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c877555693c14d2f84191cfd3ad8582790fc52b5e2274b40b59cf5f5cea25c7"
 
 [[package]]
+name = "easy-exercises"
+version = "0.1.0"
+
+[[package]]
 name = "equivalent"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -504,6 +508,46 @@ name = "smallvec"
 version = "1.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c5e1a9a646d36c3599cd173a41282daf47c44583ad367b8e6837255952e5c67"
+
+[[package]]
+name = "solution1"
+version = "0.1.0"
+
+[[package]]
+name = "solution2"
+version = "0.1.0"
+
+[[package]]
+name = "solution3"
+version = "0.1.0"
+
+[[package]]
+name = "solution4"
+version = "0.1.0"
+
+[[package]]
+name = "solution5"
+version = "0.1.0"
+
+[[package]]
+name = "solutiont1"
+version = "0.1.0"
+
+[[package]]
+name = "solutiont2"
+version = "0.1.0"
+
+[[package]]
+name = "solutiont3"
+version = "0.1.0"
+
+[[package]]
+name = "solutiont4"
+version = "0.1.0"
+
+[[package]]
+name = "solutiont5"
+version = "0.1.0"
 
 [[package]]
 name = "syn"

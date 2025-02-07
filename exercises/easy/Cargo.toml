@@ -1,0 +1,85 @@
+[package]
+name = "easy-exercises"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "algorithm1"
+path = "algorithm1.rs"
+
+[[bin]]
+name = "algorithm10"
+path = "algorithm10.rs"
+
+[[bin]]
+name = "algorithm11"
+path = "algorithm11.rs"
+
+[[bin]]
+name = "algorithm12"
+path = "algorithm12.rs"
+
+[[bin]]
+name = "algorithm13"
+path = "algorithm13.rs"
+
+[[bin]]
+name = "algorithm14"
+path = "algorithm14.rs"
+
+[[bin]]
+name = "algorithm15"
+path = "algorithm15.rs"
+
+[[bin]]
+name = "algorithm16"
+path = "algorithm16.rs"
+
+[[bin]]
+name = "algorithm17"
+path = "algorithm17.rs"
+
+[[bin]]
+name = "algorithm18"
+path = "algorithm18.rs"
+
+[[bin]]
+name = "algorithm19"
+path = "algorithm19.rs"
+
+[[bin]]
+name = "algorithm2"
+path = "algorithm2.rs"
+
+[[bin]]
+name = "algorithm20"
+path = "algorithm20.rs"
+
+[[bin]]
+name = "algorithm3"
+path = "algorithm3.rs"
+
+[[bin]]
+name = "algorithm4"
+path = "algorithm4.rs"
+
+[[bin]]
+name = "algorithm5"
+path = "algorithm5.rs"
+
+[[bin]]
+name = "algorithm6"
+path = "algorithm6.rs"
+
+[[bin]]
+name = "algorithm7"
+path = "algorithm7.rs"
+
+[[bin]]
+name = "algorithm8"
+path = "algorithm8.rs"
+
+[[bin]]
+name = "algorithm9"
+path = "algorithm9.rs"
+
