@@ -1,8 +1,7 @@
 /*
-	heap
-	This question requires you to implement a binary heap function
+    heap
+    This question requires you to implement a binary heap function
 */
-
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,7 +36,9 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+        self.items.push(value);
+        self.count += 1;
+        self.shift_up(self.count);
     }
 
     fn parent_idx(&self, idx: usize) -> usize {
@@ -56,9 +57,43 @@ where
         self.left_child_idx(idx) + 1
     }
 
-    fn smallest_child_idx(&self, idx: usize) -> usize {
+    fn smallest_child_idx(&self, idx: usize) -> Option<usize> {
         //TODO
-		0
+        let left_idx = self.left_child_idx(idx);
+        let right_idx = self.right_child_idx(idx);
+
+        if left_idx > self.count {
+            None
+        } else if right_idx > self.count
+            || (self.comparator)(&self.items[left_idx], &self.items[right_idx])
+        {
+            Some(left_idx)
+        } else {
+            Some(right_idx)
+        }
+    }
+
+    fn shift_up(&mut self,  idx: usize) {
+        let mut idx = idx;
+        while idx > 1 {
+            let parent_idx = self.parent_idx(idx);
+            if (self.comparator)(&self.items[parent_idx], &self.items[idx]) {
+                break;
+            }
+            self.items.swap(parent_idx, idx);
+            idx = parent_idx;
+        }
+    }
+
+    fn shift_down(&mut self, idx: usize) {
+        let mut idx = idx;
+        while let Some(smallest_child_idx) = self.smallest_child_idx(idx) {
+            if (self.comparator)(&self.items[idx], &self.items[smallest_child_idx]) {
+                break;
+            }
+            self.items.swap(idx, smallest_child_idx);
+            idx = smallest_child_idx;
+        }
     }
 }
 
@@ -85,7 +120,14 @@ where
 
     fn next(&mut self) -> Option<T> {
         //TODO
-		None
+        if self.is_empty() {
+            None
+        } else {
+            let res = self.items.swap_remove(1);
+            self.count -= 1;
+            self.shift_down(1);
+            Some(res)
+        }
     }
 }
 

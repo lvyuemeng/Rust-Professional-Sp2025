@@ -11,11 +11,37 @@
     Hint: Consider normalizing the strings by removing non-alphabetical characters and converting to lowercase before checking.
 */
 
-use std::fmt::{self, Display, Formatter};
+use std::{collections::HashMap, fmt::{self, Display, Formatter}};
 
 pub fn are_anagrams(s1: String, s2: String) -> bool {
     // TODO: Implement the logic to check if two strings are anagrams
-    false // Placeholder return value
+    let normalize = |s: String| {
+        s.chars()
+            .filter(|ch| ch.is_alphabetic())
+            .map(|ch| ch.to_ascii_lowercase())
+            .collect::<String>()
+    };
+
+    let normalized_s1 = normalize(s1);
+    let normalized_s2 = normalize(s2);
+    
+    if normalized_s1.len() != normalized_s2.len() {
+        return false;
+    }
+
+    let mut table = HashMap::new();
+    for ch in normalized_s1.chars() {
+        *table.entry(ch).or_insert(0) += 1;
+    }
+
+    for ch in normalized_s2.chars() {
+        let count = table.entry(ch).or_insert(0);
+        if *count == 0 {
+            return false;
+        }
+        *count -= 1;
+    }
+    true
 }
 
 #[cfg(test)]
