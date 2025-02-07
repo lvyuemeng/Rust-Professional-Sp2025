@@ -29,8 +29,24 @@ impl Graph {
     fn bfs_with_return(&self, start: usize) -> Vec<usize> {
         
 		//TODO
-
+        use std::collections::VecDeque;
+        
+        let mut visited = vec![false;self.adj.len()];
+        let mut queue = VecDeque::new();
         let mut visit_order = vec![];
+        
+        visited[start] = true;
+        queue.push_back(start);
+        while let Some(cur) = queue.pop_front() {
+            visit_order.push(cur);
+
+            for &dest in &self.adj[cur] {
+                if !visited[dest] {
+                    visited[dest]=true;
+                    queue.push_back(dest);
+                }
+            }
+        }
         visit_order
     }
 }
