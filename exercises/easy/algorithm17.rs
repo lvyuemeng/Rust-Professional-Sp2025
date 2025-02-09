@@ -14,15 +14,11 @@ use std::{collections::HashSet, fmt::{self, Display, Formatter}};
 pub fn intersection(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
     // TODO: Implement the logic to find the intersection of two arrays
     let set1:HashSet<i32> = nums1.into_iter().collect();
-    let mut res = HashSet::new();
+    let set2:HashSet<i32> = nums2.into_iter().collect();
 
-    for num in &nums2 {
-        if set1.contains(num) {
-            res.insert(*num);
-        }
-    }
-
-    res.into_iter().collect()
+    let mut res:Vec<i32> = set1.intersection(&set2).cloned().collect();
+    res.sort();
+    res
 }
 
 #[cfg(test)]
