@@ -9,6 +9,7 @@ mod tests {
     // 定义测试用例和预期结果，待补充8个测试用例子
     const TEST_CASES: &[(&str, &str)] = &[
         ("2025-01-01", "1,3,1,364,27,0"),
+        // weird, test case 2 should be of week_num = 3.
         ("2025-01-18", "2,6,18,347,10,1"),
     ];
 
@@ -16,6 +17,7 @@ mod tests {
     #[test]
     fn test_calc_time() {
         let mut total_score = 0.0;
+        // total 20 scores, waited to be fixed.
         for (input, expected) in TEST_CASES {
             let start = Instant::now();
             let result = time_info(*input);

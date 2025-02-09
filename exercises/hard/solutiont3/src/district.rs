@@ -79,17 +79,9 @@ impl<'de> Visitor<'de> for CityDataVisitor {
                 .or_insert_with(|| links.into_iter().collect());
         }
 
-        let mut all_cities = HashSet::new();
-        for links in cities.values() {
-            for city in links.iter() {
-                all_cities.insert(city.clone());
-            }
-        }
+        let mut all_cities: HashSet<String> = cities.values().cloned().flatten().collect();
         for city in all_cities.drain() {
             cities.entry(city).or_insert_with(HashSet::new);
-        }
-        for (city, links) in &mut cities {
-            links.remove(city);
         }
         Ok(CityData { cities })
     }
