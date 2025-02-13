@@ -44,7 +44,6 @@ struct Date {
     pub days_rem: u32,
 }
 
-
 impl PartialOrd for Date {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         match self.year.partial_cmp(&other.year)? {
@@ -64,7 +63,6 @@ impl PartialEq for Date {
         self.year == other.year && self.month == other.month && self.day == other.day
     }
 }
-
 
 impl Date {
     fn new(year: u32, month: u32, day: u32) -> Self {
@@ -88,11 +86,13 @@ impl Date {
 
     fn get_closed_days() -> Vec<(Date, Date)> {
         vec![
-            (Date::new(2025, 1, 28), Date::new(2025, 1, 24)),
-            (Date::new(2025, 4, 4), Date::new(2025, 4, 6)),
-            (Date::new(2025, 5, 1), Date::new(2025, 5, 5)),
-            (Date::new(2025, 5, 31), Date::new(2025, 6, 2)),
-            (Date::new(2025, 10, 1), Date::new(2025, 10, 8)),
+            (Date::new(2024, 12, 31), Date::new(2025, 1, 1)),
+            (Date::new(2025, 1, 27), Date::new(2025, 2, 4)),
+            (Date::new(2025, 4, 3), Date::new(2025, 4, 6)),
+            (Date::new(2025, 4, 30), Date::new(2025, 5, 5)),
+            (Date::new(2025, 5, 30), Date::new(2025, 6, 2)),
+            (Date::new(2025, 9, 31), Date::new(2025, 10, 8)),
+            (Date::new(2025, 12, 31), Date::new(2026, 1, 1)),
         ]
     }
 
@@ -104,7 +104,12 @@ impl Date {
         let closed_days = Date::get_closed_days();
         for (l, r) in closed_days {
             if self.contains(&l, &r) {
-                let gap = r.days_passed - l.days_passed;
+                let gap = if self.year == r.year {
+                    r.days_passed - self.days_passed
+                } else {
+                    r.days_passed + self.days_rem
+                };
+
                 return gap;
             }
         }
@@ -126,6 +131,8 @@ impl Date {
     fn calc_week(&self) -> (u32, u32) {
         assert!(self.year == 2025);
         let week_num = if self.days_passed < 4 {
+            1
+        } else if self.month == 12 && self.day >= 29 {
             1
         } else {
             (self.days_passed) / 7 + 1
